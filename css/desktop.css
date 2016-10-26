@@ -1,0 +1,165 @@
+/************
+general rules 
+************/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    
+    outline: none;
+}
+html,
+body {
+    width: 100%;
+    height: 100%;
+    background: #282828;
+    
+    position: relative;
+}
+
+
+/*******
+ sidebar 
+*******/
+side {
+    width: 50px;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+side > div {
+    padding: 5px;
+}
+
+side button {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border-radius: 5px;
+    outline: none;
+}
+side button:hover {
+    background-color: #656565;
+}
+
+/* text buttons */
+side button {    
+    line-height: 40px;
+    font-size: 23px;
+    font-weight: 500;
+    color: #FDFEF7;
+}
+
+side button:hover {
+    text-shadow: 0 0 10px #000;
+}
+
+/* image buttons */
+side button > img {
+    width: 100%;
+    padding: 5px;
+    
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+side button:hover > img {
+    width: 100%;
+    padding: 5px;
+    
+    filter: drop-shadow(0 0 5px rgba(0,0,0,0.7));
+}
+
+/* special buttons */
+#addtab {
+    margin-bottom: 25px;
+    font-weight: 900;
+}
+#menu {
+    font-weight: 900;
+    margin-top: 15px;
+}
+
+#tabstream {
+    flex-grow: 1;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding-bottom: 30px;
+}
+#tabstream::-webkit-scrollbar {
+    display: none;
+}
+
+#pinnedtabs {
+    z-index: 1;
+    background-color: #282828;
+    box-shadow: 0 0 50px 35px #282828;
+    border-top: 1px dashed rgba(255, 266, 255, .5);
+}
+
+
+/***
+main
+***/
+side:hover ~ main {
+    box-shadow: -85px 0 50px -100px #282828 inset;
+}
+
+main {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: calc(100% - 50px);
+    border-radius: 0 5px 5px 0;
+    background: #fff;
+    transition: box-shadow .5s;
+}
+
+#topbar {
+    width: 100%;
+    height: 30px;
+    border-radius: 0 5px 0 0;
+    background-color: #DE5833;
+    box-shadow: -85px 0 50px -100px #282828 inset;
+    text-align: center;
+    
+    padding-top: 5px;
+}
+
+#topbar > * {
+    height: 20px;
+    line-height: 20px;
+    
+    border-radius: 5px;
+    
+    box-shadow: 0 0 30px -18px inset;
+    transition: background-color .3s;
+}
+
+#topbar.bright > * {
+    background-color: rgba(0, 0, 0, .4);
+    color: #FDFEF7;
+}
+#topbar.bright:hover > * {
+    background-color: rgba(0, 0, 0, .6);
+}
+#topbar.dark > * {
+    background-color: rgba(255, 255, 255, .5);
+    color: #282828;
+}
+#topbar.dark:hover > * {
+    background-color: rgba(255, 255, 255, .7);
+}
+
+#topbar > input[type=url] {
+    width: 80%;
+    max-width: 350px;
+    padding: 0 10px;
+}
+
+#topbar > button {
+    padding: 0 5px;
+}
