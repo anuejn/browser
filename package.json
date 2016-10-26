@@ -1,0 +1,16 @@
+{
+    "name": "browser",
+    "version": "0.0.1",
+    "description": "A browser that has a stream of tabs",
+    "author": "Jaro Habiger",
+    "license": "GPLv3",
+
+    "main": "main.js",
+    "scripts": {
+        "start" : "electron ."
+    },
+
+    "devDependencies": {
+        "electron": "^1.4.4"
+    }
+}

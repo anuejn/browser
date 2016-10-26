@@ -6,18 +6,18 @@ general rules
     padding: 0;
     box-sizing: border-box;
     border: 0;
-    
+
     outline: none;
 }
+
 html,
 body {
     width: 100%;
     height: 100%;
     background: #282828;
-    
+
     position: relative;
 }
-
 
 /*******
  sidebar 
@@ -39,15 +39,16 @@ side button {
     width: 40px;
     height: 40px;
     background: none;
-    border-radius: 5px;
+    border-radius: 7px;
     outline: none;
 }
+
 side button:hover {
     background-color: #656565;
 }
 
 /* text buttons */
-side button {    
+side button {
     line-height: 40px;
     font-size: 23px;
     font-weight: 500;
@@ -62,15 +63,15 @@ side button:hover {
 side button > img {
     width: 100%;
     padding: 5px;
-    
+
     filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
 side button:hover > img {
     width: 100%;
     padding: 5px;
-    
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.7));
+
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
 }
 
 /* special buttons */
@@ -78,6 +79,7 @@ side button:hover > img {
     margin-bottom: 25px;
     font-weight: 900;
 }
+
 #menu {
     font-weight: 900;
     margin-top: 15px;
@@ -89,6 +91,7 @@ side button:hover > img {
     overflow-x: hidden;
     padding-bottom: 30px;
 }
+
 #tabstream::-webkit-scrollbar {
     display: none;
 }
@@ -99,7 +102,6 @@ side button:hover > img {
     box-shadow: 0 0 50px 35px #282828;
     border-top: 1px dashed rgba(255, 266, 255, .5);
 }
-
 
 /***
 main
@@ -113,7 +115,7 @@ main {
     z-index: 2;
     height: 100%;
     width: calc(100% - 50px);
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 7px 5px 0;
     background: #fff;
     transition: box-shadow .5s;
 }
@@ -121,20 +123,22 @@ main {
 #topbar {
     width: 100%;
     height: 30px;
-    border-radius: 0 5px 0 0;
+    border-radius: 0 7px 0 0;
     background-color: #DE5833;
     box-shadow: -85px 0 50px -100px #282828 inset;
     text-align: center;
-    
+
     padding-top: 5px;
+    -webkit-app-region: drag;
 }
 
 #topbar > * {
+    -webkit-app-region: no-drag;
     height: 20px;
     line-height: 20px;
-    
-    border-radius: 5px;
-    
+
+    border-radius: 7px;
+
     box-shadow: 0 0 30px -18px inset;
     transition: background-color .3s;
 }
@@ -143,14 +147,17 @@ main {
     background-color: rgba(0, 0, 0, .4);
     color: #FDFEF7;
 }
-#topbar.bright:hover > * {
+
+#topbar.bright > *:hover {
     background-color: rgba(0, 0, 0, .6);
 }
+
 #topbar.dark > * {
     background-color: rgba(255, 255, 255, .5);
     color: #282828;
 }
-#topbar.dark:hover > * {
+
+#topbar.dark > *:hover {
     background-color: rgba(255, 255, 255, .7);
 }
 
@@ -162,4 +169,19 @@ main {
 
 #topbar > button {
     padding: 0 5px;
+    font-weight:900;
+}
+
+
+/*******
+festival
+*******/
+#festival {
+    width: 100%;
+    height: calc(100% - 30px);
+}
+
+#festival > webview {
+    width: 100%;
+    height: 100%;
 }
