@@ -1,7 +1,7 @@
 {
     "name": "browser",
     "version": "0.0.1",
-    "description": "A browser that has a stream of tabs",
+    "description": "A browser that uses a non mainstram tabbing concept",
     "author": "Jaro Habiger",
     "license": "GPLv3",
 

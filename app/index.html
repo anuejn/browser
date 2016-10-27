@@ -51,6 +51,11 @@
         <div id="festival">
             <!-- this is the place, where the actual browser is -->
             <webview src="https://duckduckgo.com"></webview>
+            <script>
+                //this is just temporary here for testing
+                var webview = document.getElementsByTagName('webview')[0];
+                webview.insertCSS("html {display: none;}");
+            </script>
         </div>
     </main>
 </body>

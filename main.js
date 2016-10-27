@@ -14,7 +14,7 @@ function createWindow () {
     window.once('ready-to-show', () => {
         //hack for not showing white first
         window.show();
-        //window.webContents.openDevTools();
+        window.webContents.openDevTools();
     });
 
     window.on('closed', function () {

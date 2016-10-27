@@ -184,4 +184,5 @@ festival
 #festival > webview {
     width: 100%;
     height: 100%;
+    border-bottom-right-radius: 7px;
 }
