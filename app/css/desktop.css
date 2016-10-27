@@ -1,5 +1,5 @@
 /************
-general rules 
+general rules
 ************/
 * {
     margin: 0;
@@ -20,7 +20,7 @@ body {
 }
 
 /*******
- sidebar 
+ sidebar
 *******/
 side {
     width: 50px;
@@ -115,41 +115,44 @@ main {
     z-index: 2;
     height: 100%;
     width: calc(100% - 50px);
-    border-radius: 0 7px 5px 0;
+    border-radius: 0 6px 5px 0;
     background: #fff;
     transition: box-shadow .5s;
 }
 
 #topbar {
     width: 100%;
-    height: 30px;
-    border-radius: 0 7px 0 0;
-    background-color: #DE5833;
+    height: 38px;
+    border-radius: 0 6px 0 0;
+    background-color: #eee;
     box-shadow: -85px 0 50px -100px #282828 inset;
     text-align: center;
 
-    padding-top: 5px;
+    padding: 5px 0;
     -webkit-app-region: drag;
+    border-bottom: 1px solid #ccc;
 }
 
 #topbar > * {
     -webkit-app-region: no-drag;
-    height: 20px;
-    line-height: 20px;
+    height: 28px;
+    line-height: 28px;
 
-    border-radius: 7px;
+    border-radius: 4px;
 
     box-shadow: 0 0 30px -18px inset;
     transition: background-color .3s;
 }
 
 #topbar.bright > * {
-    background-color: rgba(0, 0, 0, .4);
-    color: #FDFEF7;
+    background-color: rgba(0, 0, 0, .2);
+    background-color: #fff;
+    box-shadow: 0px 1px 0 rgba(0, 0, 0, .1);
+    color: #000;
 }
 
-#topbar.bright > *:hover {
-    background-color: rgba(0, 0, 0, .6);
+#topbar.bright > *:focus {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
 }
 
 #topbar.dark > * {
@@ -169,6 +172,7 @@ main {
 
 #topbar > button {
     padding: 0 5px;
+    width: 28px;
     font-weight:900;
 }
 
@@ -178,7 +182,7 @@ festival
 *******/
 #festival {
     width: 100%;
-    height: calc(100% - 30px);
+    height: calc(100% - 38px);
 }
 
 #festival > webview {
