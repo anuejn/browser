@@ -8,6 +8,7 @@ window.$ = window.jQuery = require('jquery');
 module.exports = class Tab {
     constructor() {
         this.invocedBy = null;
+        this.isActive = false;
 
         this.button = $('<button type="button" id="addtab">+</button>\n');
         this.webview = $('<webview src="browser://newtab">');
@@ -34,12 +35,18 @@ module.exports = class Tab {
     }
 
     setActive() {
+        this.isActive = true;
         this.button.addClass("current");
         this.webview.addClass("current");
     }
 
     setUnActive() {
+        this.isActive = false;
         this.button.removeClass("current");
         this.webview.removeClass("current");
+    }
+
+    getTitle() {
+        return this.webview[0].getTitle();
     }
 };

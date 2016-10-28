@@ -158,6 +158,15 @@ main {
     padding: 0 10px;
 }
 
+#topbar > input[type=url]::-webkit-input-placeholder {
+    color: rgba(0,0,0,.7);
+    text-align: center;
+}
+
+#topbar > input[type=url]:focus::-webkit-input-placeholder {
+    color:transparent;
+}
+
 #topbar > button {
     padding: 0 5px;
     width: 28px;

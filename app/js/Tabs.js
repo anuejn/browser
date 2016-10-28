@@ -18,11 +18,9 @@ class Tabs {
         this.newTab();
     }
 
-    newTab() {
-        var tab = this.createNewTab();
-        this.activateTab(tab.button);
+    hasNewTab() {
+        return this.tabs.filter(tab => tab.isNewTab()).length < 1;
     }
-
     createNewTab() {
         if (this.hasNewTab()) {
             var tab = new Tab();
@@ -33,9 +31,9 @@ class Tabs {
             return this.tabs.filter(tab => tab.isNewTab())[0];
         }
     }
-
-    hasNewTab() {
-        return this.tabs.filter(tab => tab.isNewTab()).length < 1;
+    newTab() {
+        var tab = this.createNewTab();
+        this.activateTab(tab.button);
     }
 
     activateTab(tabButton) {
@@ -43,6 +41,9 @@ class Tabs {
         unActiveTabs.forEach(tab => tab.setUnActive());
         var activeTab = this.tabs.filter(tab => tab.button == tabButton);
         activeTab.forEach(tab => tab.setActive());
+    }
+    getActiveTab() {
+        return this.tabs.filter(tab => tab.isActive)[0];
     }
 
     renderTabState() {
@@ -52,7 +53,7 @@ class Tabs {
         tabstream.html("");
         this.tabs.reverse();
         this.tabs.forEach(tab => tabstream.append(tab.button));
-        this.tabs.reverse();
+        this.tabs.reverse(); //TODO: find better way
 
         //webviews
         var festival = $("#festival");
