@@ -14,7 +14,7 @@ html,
 body {
     width: 100%;
     height: 100%;
-    background: #282828;
+    background: #ddd;
 
     position: relative;
 }
@@ -44,7 +44,7 @@ side button {
 }
 
 side button:hover {
-    background-color: #656565;
+    background-color: #ccc;
 }
 
 /* text buttons */
@@ -52,37 +52,24 @@ side button {
     line-height: 40px;
     font-size: 23px;
     font-weight: 500;
-    color: #FDFEF7;
-}
-
-side button:hover {
-    text-shadow: 0 0 10px #000;
+    color: #000;
 }
 
 /* image buttons */
 side button > img {
     width: 100%;
     padding: 5px;
-
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
 side button:hover > img {
     width: 100%;
     padding: 5px;
-
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.7));
 }
 
 /* special buttons */
 #addtab {
     margin-bottom: 25px;
     font-weight: 900;
-}
-
-#menu {
-    font-weight: 900;
-    margin-top: 15px;
 }
 
 #tabstream {
@@ -98,26 +85,33 @@ side button:hover > img {
 
 #pinnedtabs {
     z-index: 1;
-    background-color: #282828;
-    box-shadow: 0 0 50px 35px #282828;
-    border-top: 1px dashed rgba(255, 266, 255, .5);
+    background: #eee;
+    border: 1px solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+}
+
+#menubar {
+    z-index: 1;
+    background: #eee;
+}
+
+#menu {
+    font-weight: 900;
+    color: #333;
 }
 
 /***
 main
 ***/
-side:hover ~ main {
-    box-shadow: -85px 0 50px -100px #282828 inset;
-}
-
 main {
     position: relative;
     z-index: 2;
     height: 100%;
     width: calc(100% - 50px);
-    border-radius: 0 6px 5px 0;
+    border-radius: 0 6px 6px 0;
     background: #fff;
-    transition: box-shadow .5s;
+    border-right: 1px solid #bbb;
+    overflow: hidden;
 }
 
 #topbar {
@@ -125,7 +119,6 @@ main {
     height: 38px;
     border-radius: 0 6px 0 0;
     background-color: #eee;
-    box-shadow: -85px 0 50px -100px #282828 inset;
     text-align: center;
 
     padding: 5px 0;
@@ -137,15 +130,10 @@ main {
     -webkit-app-region: no-drag;
     height: 28px;
     line-height: 28px;
-
     border-radius: 4px;
-
-    box-shadow: 0 0 30px -18px inset;
-    transition: background-color .3s;
 }
 
 #topbar.bright > * {
-    background-color: rgba(0, 0, 0, .2);
     background-color: #fff;
     box-shadow: 0px 1px 0 rgba(0, 0, 0, .1);
     color: #000;
