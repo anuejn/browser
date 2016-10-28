@@ -11,6 +11,9 @@ module.exports = class Tab {
 
         this.button = $('<button type="button" id="addtab">+</button>\n');
         this.webview = $('<webview src="browser://newtab">');
+        this.webview.on("change", event => {
+            console.log(event);
+        });
     }
 
     isNewTab() {
@@ -22,15 +25,21 @@ module.exports = class Tab {
     }
     setUrl(newUrl) {
         this.webview.attr("src", newUrl);
+        this.onUrlChange();
+    }
+
+    onUrlChange() {
+        this.button.html('<img src="assets/icons/loading.svg">');
+        Tabs.getInstance().renderTabState();
     }
 
     setActive() {
-        this.button.addClass("active");
-        this.webview.addClass("active");
+        this.button.addClass("current");
+        this.webview.addClass("current");
     }
 
     setUnActive() {
-        this.button.removeClass("active");
-        this.webview.removeClass("active");
+        this.button.removeClass("current");
+        this.webview.removeClass("current");
     }
-}
+};
