@@ -43,7 +43,7 @@ side button {
     outline: none;
 }
 
-side button:hover {
+side button.current {
     background-color: #ccc;
 }
 
@@ -176,5 +176,4 @@ festival
 #festival > webview {
     width: 100%;
     height: 100%;
-    border-bottom-right-radius: 7px;
 }
