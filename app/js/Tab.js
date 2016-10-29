@@ -80,13 +80,15 @@ module.exports = class Tab {
     setActive() {
         this.isActive = true;
         this.button.addClass("current");
-        this.webview.addClass("current");
+        this.webview.removeClass("hidden");
+        this.webview.get(0).hidden = false;
     }
 
     setUnActive() {
         this.isActive = false;
         this.button.removeClass("current");
-        this.webview.removeClass("current");
+        this.webview.addClass("hidden");
+        this.webview.get(0).hidden = true;
     }
 
     getTitle() {
