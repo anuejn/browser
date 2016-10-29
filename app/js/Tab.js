@@ -11,6 +11,11 @@ module.exports = class Tab {
         this.isActive = false;
 
         this.button = $('<button type="button" id="addtab">+</button>\n');
+        this.onButtonClick = event => {
+            var tabs = Tabs.getInstance();
+            tabs.activateTab(this);
+        };
+
         this.webview = $('<webview src="browser://newtab">');
         this.webview.on("change", event => {
             console.log(event);

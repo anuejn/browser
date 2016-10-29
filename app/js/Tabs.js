@@ -21,6 +21,7 @@ class Tabs {
     hasNewTab() {
         return this.tabs.filter(tab => tab.isNewTab()).length < 1;
     }
+
     createNewTab() {
         if (this.hasNewTab()) {
             var tab = new Tab();
@@ -31,17 +32,19 @@ class Tabs {
             return this.tabs.filter(tab => tab.isNewTab())[0];
         }
     }
+
     newTab() {
         var tab = this.createNewTab();
-        this.activateTab(tab.button);
+        this.activateTab(tab);
     }
 
-    activateTab(tabButton) {
-        var unActiveTabs = this.tabs.filter(tab => tab.button != tabButton);
+    activateTab(givenTtab) {
+        var unActiveTabs = this.tabs.filter(tab => tab != givenTtab);
         unActiveTabs.forEach(tab => tab.setUnActive());
-        var activeTab = this.tabs.filter(tab => tab.button == tabButton);
+        var activeTab = this.tabs.filter(tab => tab == givenTtab);
         activeTab.forEach(tab => tab.setActive());
     }
+
     getActiveTab() {
         return this.tabs.filter(tab => tab.isActive)[0];
     }
@@ -58,6 +61,7 @@ class Tabs {
         //webviews
         var festival = $("#festival");
         festival.html("");
+        this.tabs.forEach(tab => tab.button.click(tab.onButtonClick));
         this.tabs.forEach(tab => festival.append(tab.webview));
     }
 }
