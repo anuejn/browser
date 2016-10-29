@@ -3,6 +3,7 @@
  */
 window.$ = window.jQuery = require('jquery');
 let Tab = require('../app/js/Tab');
+let UrlBar = require('../app/js/UrlBar');
 
 let instance = null;
 class Tabs {
@@ -12,18 +13,16 @@ class Tabs {
         }
         return instance;
     }
-
     constructor() {
         this.tabs = [];
         this.newTab();
     }
 
     hasNewTab() {
-        return this.tabs.filter(tab => tab.isNewTab()).length < 1;
+        return this.tabs.filter(tab => tab.isNewTab()).length == 1;
     }
-
     createNewTab() {
-        if (this.hasNewTab()) {
+        if (!this.hasNewTab()) {
             var tab = new Tab();
             this.tabs.push(tab);
             this.renderTabState();
@@ -32,10 +31,10 @@ class Tabs {
             return this.tabs.filter(tab => tab.isNewTab())[0];
         }
     }
-
     newTab() {
         var tab = this.createNewTab();
         this.activateTab(tab);
+        UrlBar.getInstance().focus();
     }
 
     activateTab(givenTtab) {
@@ -61,7 +60,7 @@ class Tabs {
         //webviews
         var festival = $("#festival");
         festival.html("");
-        this.tabs.forEach(tab => tab.button.click(tab.onButtonClick));
+        this.tabs.forEach(tab => tab.button.mousedown(tab.onButtonClick));
         this.tabs.forEach(tab => festival.append(tab.webview));
     }
 }
