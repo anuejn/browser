@@ -37,17 +37,17 @@ class Tabs {
         UrlBar.getInstance().focus();
     }
 
+    getActiveTab() {
+        return this.tabs.filter(tab => tab.isActive)[0];
+    }
     activateTab(givenTtab) {
         var unActiveTabs = this.tabs.filter(tab => tab != givenTtab);
         unActiveTabs.forEach(tab => tab.setUnActive());
         var activeTab = this.tabs.filter(tab => tab == givenTtab);
         activeTab.forEach(tab => tab.setActive());
-    }
 
-    getActiveTab() {
-        return this.tabs.filter(tab => tab.isActive)[0];
+        this.renderTitlebar();
     }
-
     renderTabState() {
         //tab buttons
         this.createNewTab();
@@ -62,6 +62,13 @@ class Tabs {
         festival.html("");
         this.tabs.forEach(tab => tab.button.mousedown(tab.onButtonClick));
         this.tabs.forEach(tab => festival.append(tab.webview));
+    }
+    renderTitlebar() {
+        var tab = this.getActiveTab();
+        var urlBar = UrlBar.getInstance();
+
+        urlBar.setUrl(tab.getUrl());
+        urlBar.setTitle(tab.getTitle());
     }
 }
 

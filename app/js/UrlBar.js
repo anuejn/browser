@@ -16,8 +16,20 @@ module.exports = class UrlBar {
             if (event.keyCode == 13) {
                 var tabs = Tabs.getInstance();
                 var activeTab = tabs.getActiveTab();
-                activeTab.setUrl(event.target.value)
+                activeTab.setUrl(event.target.value);
+                this.unfocus();
             }
+        });
+
+        this.url = null;
+
+        //the following code is for displaying the title normally
+        this.elem.focus(() => {
+            this.elem.val(this.url);
+            $(this).select();
+        });
+        this.elem.blur(() => {
+            this.elem.val("");
         });
     }
 
@@ -25,11 +37,14 @@ module.exports = class UrlBar {
         this.elem.attr("placeholder", title);
     }
     setUrl(url) {
-        this.elem.value = url;
+        this.url = url;
     }
 
     focus() {
         this.elem.focus();
+    }
+    unfocus() {
+        this.elem.blur();
     }
 };
 
