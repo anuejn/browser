@@ -37,7 +37,7 @@ module.exports = class Tab {
         });
         this.webview[0].addEventListener('page-favicon-updated', (favicons) => {
             this.favicons = favicons.favicons;
-            this.button.html('<img src="' + this.favicons[0] + '">')
+            this.button.html('<img src="' + this.favicons[this.favicons.length - 1] + '">')
         });
 
 
@@ -52,10 +52,16 @@ module.exports = class Tab {
         this.webview[0].addEventListener('did-start-loading', () => {
             this.button.html('<img src="assets/icons/loading.svg">');
         });
-        this.webview[0].addEventListener('did-stop-loading', () => {
+        this.webview[0].addEventListener('did-finish-load', () => {
             if (!this.favicons) {
                 this.button.html(this.getUrl().split('//')[1].substr(0, 2));
             }
+        });
+        this.webview[0].addEventListener('did-fail-load', (errorCode, errorDescription, validatedURL) => {
+            console.log(errorCode);
+            this.button.html(":(");
+
+            //TODO: render error page
         });
 
         this.button.removeAttr("id");
