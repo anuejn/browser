@@ -12,7 +12,7 @@ module.exports = class Tab {
         this.favicons = [];
         this.title = "";
 
-        this.button = $('<button type="button" id="addtab">+</button>\n');
+        this.button = $('<button type="button" id="addtab"><object>+</object></button>\n');
         this.onButtonClick = event => {
             var tabs = Tabs.getInstance();
             tabs.activateTab(this);
@@ -37,7 +37,7 @@ module.exports = class Tab {
         });
         this.webview[0].addEventListener('page-favicon-updated', (favicons) => {
             this.favicons = favicons.favicons;
-            this.button.html('<img src="' + this.favicons[this.favicons.length - 1] + '">')
+            this.setIcon(this.favicons[this.favicons.length - 1]);
         });
 
 
@@ -50,17 +50,16 @@ module.exports = class Tab {
 
     isGettingRealTab() {
         this.webview[0].addEventListener('did-start-loading', () => {
-            this.button.html('<img src="assets/icons/loading.svg">');
+            this.setIcon("assets/icons/loading.svg");
         });
         this.webview[0].addEventListener('did-finish-load', () => {
-            if (!this.favicons) {
-                this.button.html(this.getUrl().split('//')[1].substr(0, 2));
-            }
+            this.setIcon("");
+            this.setAltText(this.getTitle().substr(0, 1).toUpperCase());
         });
         this.webview[0].addEventListener('did-fail-load', (errorCode, errorDescription, validatedURL) => {
             console.log(errorCode);
-            this.button.html(":(");
-
+            this.setIcon("");
+            this.setAltText(":(");
             //TODO: render error page
         });
 
@@ -91,5 +90,13 @@ module.exports = class Tab {
 
     getTitle() {
         return this.title;
+    }
+
+    setIcon(url) {
+        this.button.children('object').attr("data", url);
+    }
+
+    setAltText(altText) {
+        this.button.children('object').html(altText);
     }
 };

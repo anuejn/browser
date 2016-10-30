@@ -52,16 +52,28 @@ class Tabs {
         //tab buttons
         this.createNewTab();
         var tabstream = $("#tabstream");
-        tabstream.html("");
+        var tabs = [];
         this.tabs.reverse();
-        this.tabs.forEach(tab => tabstream.append(tab.button));
-        this.tabs.reverse(); //TODO: find better way
-
-        //webviews
-        var festival = $("#festival");
-        festival.html("");
+        this.tabs.forEach(tab => tabs.push(tab.button));
+        this.tabs.reverse();
+        tabstream.html(tabs);
         this.tabs.forEach(tab => tab.button.mousedown(tab.onButtonClick));
-        this.tabs.forEach(tab => festival.append(tab.webview));
+
+        //add missing webviews
+        var festival = $("#festival");
+        this.tabs.forEach(tab => {
+            if(festival.find(tab.webview).length == 0) {
+                festival.append(tab.webview);
+            }
+        });
+
+        //remove old webviews
+        /*festival.children().forEach(webview => {
+            if (this.tabs.map(tab => tab.webview).indexOf(webview) === -1) {
+                //festival.remove(webview);
+                console.log("asdf");
+            }
+        });*/
     }
     renderTitlebar() {
         var tab = this.getActiveTab();

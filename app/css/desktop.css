@@ -47,28 +47,21 @@ side button.current {
     background-color: #ccc;
 }
 
-/* text buttons */
-side button {
+side button > object {
+    width: 100%;
+    padding: 5px;
+
     line-height: 40px;
-    font-size: 23px;
+    font-size: 21px;
     font-weight: 500;
     color: #000;
-}
-
-/* image buttons */
-side button > img {
-    width: 100%;
-    padding: 5px;
-}
-
-side button:hover > img {
-    width: 100%;
-    padding: 5px;
 }
 
 /* special buttons */
 #addtab {
     margin-bottom: 25px;
+}
+#addtab > object {
     font-weight: 900;
 }
 
