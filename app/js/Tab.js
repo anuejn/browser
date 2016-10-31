@@ -47,7 +47,6 @@ module.exports = class Tab {
     isNewTab() {
         return this.getUrl() == "browser://newtab";
     }
-
     isGettingRealTab() {
         this.webview[0].addEventListener('did-start-loading', () => {
             this.setIcon("assets/icons/loading.svg");
@@ -72,7 +71,6 @@ module.exports = class Tab {
     getUrl() {
         return this.webview.attr("src");
     }
-
     setUrl(newUrl) {
         this.webview.attr("src", newUrl);
     }
@@ -82,7 +80,6 @@ module.exports = class Tab {
         this.button.addClass("current");
         this.webview.addClass("current");
     }
-
     setUnActive() {
         this.isActive = false;
         this.button.removeClass("current");
@@ -94,7 +91,9 @@ module.exports = class Tab {
     }
 
     setIcon(url) {
-        this.button.children('object').attr("data", url);
+        var object = this.button.children('object');
+        object.attr("data", url);
+        this.button.html(this.button.html());
     }
 
     setAltText(altText) {

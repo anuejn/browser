@@ -17,6 +17,8 @@ body {
     background: #ddd;
 
     position: relative;
+
+    -webkit-user-select: none;
 }
 
 /*******
