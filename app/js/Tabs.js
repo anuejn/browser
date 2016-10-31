@@ -40,10 +40,10 @@ class Tabs {
     getActiveTab() {
         return this.tabs.filter(tab => tab.isActive)[0];
     }
-    activateTab(givenTtab) {
-        var unActiveTabs = this.tabs.filter(tab => tab != givenTtab);
+    activateTab(givenTab) {
+        var unActiveTabs = this.tabs.filter(tab => tab != givenTab);
         unActiveTabs.forEach(tab => tab.setUnActive());
-        var activeTab = this.tabs.filter(tab => tab == givenTtab);
+        var activeTab = this.tabs.filter(tab => tab == givenTab);
         activeTab.forEach(tab => tab.setActive());
 
         this.renderTitlebar();

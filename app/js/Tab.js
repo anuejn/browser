@@ -65,7 +65,8 @@ module.exports = class Tab {
 
         this.button.removeAttr("id");
 
-        Tabs.getInstance().renderTabState();
+        var tabs = Tabs.getInstance();
+        tabs.renderTabState();
     }
 
     getUrl() {
@@ -79,15 +80,13 @@ module.exports = class Tab {
     setActive() {
         this.isActive = true;
         this.button.addClass("current");
-        this.webview.removeClass("hidden");
-        this.webview.get(0).hidden = false;
+        this.webview.addClass("current");
     }
 
     setUnActive() {
         this.isActive = false;
         this.button.removeClass("current");
-        this.webview.addClass("hidden");
-        this.webview.get(0).hidden = true;
+        this.webview.removeClass("current");
     }
 
     getTitle() {

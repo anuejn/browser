@@ -10,13 +10,15 @@ module.exports = class UrlBar {
         }
         return instance;
     }
+
     constructor() {
         this.elem = $("#topbar > input[type=url]");
         this.elem.keydown(event => {
             if (event.keyCode == 13) {
                 var tabs = Tabs.getInstance();
                 var activeTab = tabs.getActiveTab();
-                activeTab.setUrl(event.target.value);
+                var input = event.target.value;
+                activeTab.setUrl(this.inputToUrl(input));
                 this.unfocus();
             }
         });
@@ -26,16 +28,28 @@ module.exports = class UrlBar {
         //the following code is for displaying the title normally
         this.elem.focus(() => {
             this.elem.val(this.url);
-            $(this).select();
+            this.elem.select();
         });
         this.elem.blur(() => {
             this.elem.val("");
         });
     }
 
+    inputToUrl(input) {
+        input = input.trim();
+        if (input.indexOf("://") != -1 && input.indexOf(" ") == -1) { // url
+            return input;
+        } else if (input.indexOf(" ") == -1 && input.indexOf(".") != -1) {  //domain
+            return "http://" + input;
+        } else { // search
+            return "https://duckduckgo.com/?q=" + encodeURIComponent(input);
+        }
+    }
+
     setTitle(title) {
         this.elem.attr("placeholder", title);
     }
+
     setUrl(url) {
         this.url = url;
     }
@@ -43,10 +57,12 @@ module.exports = class UrlBar {
     focus() {
         this.elem.focus();
     }
+
     unfocus() {
         this.elem.blur();
     }
-};
+}
+;
 
 //finally init the UrlBar
 $(() => UrlBar.getInstance());

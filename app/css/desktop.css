@@ -167,8 +167,6 @@ main {
 /*******
 festival
 *******/
-
-
 #festival {
 	height: calc(100vh - 38px);
 	position: relative;
@@ -178,10 +176,10 @@ festival
 	width: 100%;
 	outline: none;
 	position: absolute;
+    visibility: hidden;
 }
-#festival webview[hidden] {
-	display: flex !important;
-	visibility: hidden;
+#festival webview.current {
+    visibility: visible;
 }
 #festival webview.fullscreen {
 	position: fixed;
@@ -190,10 +188,4 @@ festival
 	width: 100vw;
 	height: 100vh;
 	z-index: 99;
-}
-
-/* hack to work around display: none issues with festival */
-
-#festival webview.hidden {
-    visibility: hidden;
 }
