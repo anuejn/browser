@@ -6,6 +6,7 @@ $(document).keydown((event) => {
     if (event.key === "t" && event.ctrlKey) {
         Tabs.getInstance().newTab();
     } else {
-
     }
+
+
 });

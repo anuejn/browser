@@ -13,11 +13,11 @@ let window;
 
 function createWindow() {
     window = new BrowserWindow({width: 800, height: 600, frame: false, titleBarStyle: 'hidden-inset', show: false});
+    window.webContents.openDevTools();
     window.loadURL(`file://${__dirname}/app/index.html`);
     window.once('ready-to-show', () => {
         //hack for not showing white first
         window.show();
-        window.webContents.openDevTools();
     });
 
     window.on('closed', function () {

@@ -11,11 +11,16 @@ module.exports = class Tab {
         this.isActive = false;
         this.favicons = [];
         this.title = "";
+        this.isPinned = false;
 
         this.button = $('<button type="button" id="addtab"><object>+</object></button>\n');
         this.onButtonClick = event => {
             var tabs = Tabs.getInstance();
-            tabs.activateTab(this);
+            if (event.button == 2 && !this.isNewTab()) {
+                this.togglePin();
+            } else {
+                tabs.activateTab(this);
+            }
         };
 
         this.webview = $('<webview src="browser://newtab">');
@@ -40,20 +45,15 @@ module.exports = class Tab {
             this.setIcon(this.favicons[this.favicons.length - 1]);
         });
 
-
-        wv.addEventListener('did-start-loading', gettingRealTabListener);
-    }
-
-    isNewTab() {
-        return this.getUrl() == "browser://newtab";
-    }
-    isGettingRealTab() {
         this.webview[0].addEventListener('did-start-loading', () => {
-            this.setIcon("assets/icons/loading.svg");
+            if (!this.isNewTab()) {
+                this.setIcon("assets/icons/loading.svg");
+            }
         });
         this.webview[0].addEventListener('did-finish-load', () => {
-            this.setIcon("");
-            this.setAltText(this.getTitle().substr(0, 1).toUpperCase());
+            if (!this.isNewTab()) {
+                this.setAltText(this.getTitle().substr(0, 1).toUpperCase());
+            }
         });
         this.webview[0].addEventListener('did-fail-load', (errorCode, errorDescription, validatedURL) => {
             console.log(errorCode);
@@ -62,7 +62,16 @@ module.exports = class Tab {
             //TODO: render error page
         });
 
+        wv.addEventListener('did-start-loading', gettingRealTabListener);
+    }
+
+    isNewTab() {
+        return this.getUrl() == "browser://newtab";
+    }
+
+    isGettingRealTab() {
         this.button.removeAttr("id");
+        this.setAltText("");
 
         var tabs = Tabs.getInstance();
         tabs.renderTabState();
@@ -71,6 +80,7 @@ module.exports = class Tab {
     getUrl() {
         return this.webview.attr("src");
     }
+
     setUrl(newUrl) {
         this.webview.attr("src", newUrl);
     }
@@ -80,6 +90,7 @@ module.exports = class Tab {
         this.button.addClass("current");
         this.webview.addClass("current");
     }
+
     setUnActive() {
         this.isActive = false;
         this.button.removeClass("current");
@@ -98,5 +109,20 @@ module.exports = class Tab {
 
     setAltText(altText) {
         this.button.children('object').html(altText);
+    }
+
+    pin() {
+        this.isPinned = true;
+        Tabs.getInstance().renderTabState();
+    }
+
+    unPin() {
+        this.isPinned = false;
+        Tabs.getInstance().renderTabState();
+    }
+
+    togglePin() {
+        this.isPinned = !this.isPinned;
+        Tabs.getInstance().renderTabState();
     }
 };
