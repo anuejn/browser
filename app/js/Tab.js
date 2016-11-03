@@ -6,8 +6,8 @@
 window.$ = window.jQuery = require('jquery');
 
 module.exports = class Tab {
-    constructor() {
-        this.invocedBy = null;
+    constructor(url = "browser://newtab", invocedBy = null) {
+        this.invocedBy = invocedBy;
         this.isActive = false;
         this.favicons = [];
         this.title = "";
@@ -18,12 +18,14 @@ module.exports = class Tab {
             var tabs = Tabs.getInstance();
             if (event.button == 2 && !this.isNewTab()) {
                 this.togglePin();
+            } else if (event.button == 1 && !this.isNewTab()) {
+                this.close();
             } else {
                 tabs.activateTab(this);
             }
         };
 
-        this.webview = $('<webview src="browser://newtab">');
+        this.webview = $('<webview src="' + url + '">');
 
         var wv = this.webview[0];
         var gettingRealTabListener = (event) => {
@@ -33,29 +35,29 @@ module.exports = class Tab {
             }
         };
 
-        this.webview[0].addEventListener('page-title-updated', (title) => {
+        wv.addEventListener('page-title-updated', (title) => {
             this.title = title.title;
             Tabs.getInstance().renderTitlebar();
         });
-        this.webview[0].addEventListener('did-navigate', (url) => {
+        wv.addEventListener('did-navigate', (url) => {
             Tabs.getInstance().renderTitlebar();
         });
-        this.webview[0].addEventListener('page-favicon-updated', (favicons) => {
+        wv.addEventListener('page-favicon-updated', (favicons) => {
             this.favicons = favicons.favicons;
             this.setIcon(this.favicons[this.favicons.length - 1]);
         });
 
-        this.webview[0].addEventListener('did-start-loading', () => {
+        wv.addEventListener('did-start-loading', () => {
             if (!this.isNewTab()) {
                 this.setIcon("assets/icons/loading.svg");
             }
         });
-        this.webview[0].addEventListener('did-finish-load', () => {
+        wv.addEventListener('did-finish-load', () => {
             if (!this.isNewTab()) {
                 this.setAltText(this.getTitle().substr(0, 1).toUpperCase());
             }
         });
-        this.webview[0].addEventListener('did-fail-load', (errorCode, errorDescription, validatedURL) => {
+        wv.addEventListener('did-fail-load', (errorCode, errorDescription, validatedURL) => {
             console.log(errorCode);
             this.setIcon("");
             this.setAltText(":(");
@@ -63,6 +65,12 @@ module.exports = class Tab {
         });
 
         wv.addEventListener('did-start-loading', gettingRealTabListener);
+
+        wv.addEventListener('new-window', e  => {
+            var url = e.url;
+            console.log(url);
+            Tabs.getInstance().createTab(url, this);
+        });
     }
 
     isNewTab() {
@@ -124,5 +132,13 @@ module.exports = class Tab {
     togglePin() {
         this.isPinned = !this.isPinned;
         Tabs.getInstance().renderTabState();
+    }
+
+    close() {
+        var tabs = Tabs.getInstance();
+        console.log(tabs.tabs.find(tab => this == tab));
+        tabs.tabs = tabs.tabs.filter(tab => this != tab);
+
+        tabs.renderTabState();
     }
 };

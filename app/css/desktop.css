@@ -35,10 +35,11 @@ side {
 
 side > div {
     padding: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 side button {
-    width: 40px;
     height: 40px;
     background: none;
     border-radius: 7px;
@@ -62,6 +63,7 @@ side button > object {
 /* special buttons */
 #addtab {
     margin-bottom: 25px;
+    order: -100;
 }
 #addtab > object {
     font-weight: 900;
@@ -87,12 +89,13 @@ side button > object {
 
 #menubar {
     z-index: 1;
-    background: #eee;
+    background: #222;
 }
 
 #menu {
+    color: #eee;
+    font-size: 20px;
     font-weight: 900;
-    color: #333;
 }
 
 /***

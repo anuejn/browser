@@ -7,6 +7,4 @@ $(document).keydown((event) => {
         Tabs.getInstance().newTab();
     } else {
     }
-
-
 });

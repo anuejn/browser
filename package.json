@@ -7,7 +7,8 @@
 
     "main": "main.js",
     "scripts": {
-        "start" : "electron ."
+        "start" : "electron .",
+        "debug" : "electron . debug"
     },
 
     "devDependencies": {

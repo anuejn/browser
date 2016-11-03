@@ -23,12 +23,16 @@ class Tabs {
         return this.tabs.filter(tab => tab.isNewTab()).length == 1;
     }
 
+    createTab(url, invokedBy) {
+        var tab = new Tab(url, invokedBy);
+        this.tabs.push(tab);
+        this.renderTabState();
+        return tab;
+    }
+
     createNewTab() {
         if (!this.hasNewTab()) {
-            var tab = new Tab();
-            this.tabs.push(tab);
-            this.renderTabState();
-            return tab;
+            return this.createTab();
         } else {
             return this.tabs.filter(tab => tab.isNewTab())[0];
         }
