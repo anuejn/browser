@@ -3,7 +3,8 @@
     "version": "0.0.1",
     "description": "A browser that uses a non mainstram tabbing concept",
     "author": "Jaro Habiger",
-    "license": "GPLv3",
+    "license": "GPL-3.0",
+    "repository": "https://gitlab.com/nein/browser",
 
     "main": "main.js",
     "scripts": {
