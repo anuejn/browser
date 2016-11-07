@@ -55,3 +55,12 @@ look at this repo and the [issue tracker](https://gitlab.com/nein/browser).
 All the thing described in this document are only ideas and can change during the further development.
 Feel free do bring in your own ideas and thoughts :). Moreover feel free to fork this project, develop on it,
 hack it, and submit pull requests.
+
+## Try it!
+To run the browser you just need to run:
+```
+git clone https://gitlab.com/nein/browser 
+cd browser
+npm i
+npm run
+```
