@@ -40,6 +40,7 @@ side > div {
 }
 
 side button {
+    min-height: 40px;
     height: 40px;
     background: none;
     border-radius: 7px;
