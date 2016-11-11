@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -9,6 +9,7 @@
 
     <script src="js/Tabs.js"></script>
     <script src="js/keybindings.js"></script>
+
 </head>
 
 <body>
@@ -26,14 +27,18 @@
 </side>
 <main>
     <div id="topbar" class="dark">
-        <button type="button">&lt;</button>
+        <button title="just a placeholder" type="button">&lt;</button>
         <input type="url" placeholder="">
-        <button type="button">&gt;</button>
+        <button title="just a placeholder" type="button">&gt;</button>
+        <button title="reload this site" type="button" id="reloadButton">&#x27F3;</button>
     </div>
     <div id="festival">
         <!-- this is the place, where the actual browser is -->
     </div>
 </main>
+
+<script src="js/TopBar.js"></script>
+
 </body>
 
 </html>

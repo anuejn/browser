@@ -13,6 +13,10 @@ module.exports = class Tab {
         this.title = "";
         this.isPinned = false;
 
+        //These two variables were added by Loïc at November, 7. - 20:43
+        //this.history = new Array();
+        //this.historyPointer = 0;
+
         this.button = $('<button type="button" id="addtab"><object>+</object></button>\n');
         this.onButtonClick = event => {
             var tabs = Tabs.getInstance();
@@ -90,8 +94,21 @@ module.exports = class Tab {
     }
 
     setUrl(newUrl) {
+        /*currentUrl = this.getUrl();
+        if(newUrl != currentUrl) {
+          this.addToHistory(currentUrl, this.getTitle());
+        }*/
+
         this.webview.attr("src", newUrl);
     }
+
+    /*addToHistory(title, url) {
+      this.history.push(title + ":" + url);
+    }
+
+    getHistory() {
+      return this.history;
+    }*/
 
     setActive() {
         this.isActive = true;
@@ -132,6 +149,10 @@ module.exports = class Tab {
     togglePin() {
         this.isPinned = !this.isPinned;
         Tabs.getInstance().renderTabState();
+    }
+
+    reload() {
+      this.setUrl(this.getUrl());
     }
 
     close() {

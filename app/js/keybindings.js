@@ -4,7 +4,10 @@
 
 $(document).keydown((event) => {
     if (event.key === "t" && event.ctrlKey) {
-        Tabs.getInstance().newTab();
+      Tabs.getInstance().newTab();
+    } else if (event.keyCode == 116) { //116 is the keycode for f5
+      Tabs.getInstance().getActiveTab().reload();
     } else {
+      // I don't know what that is for...
     }
 });
